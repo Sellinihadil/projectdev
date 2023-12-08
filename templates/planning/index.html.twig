@@ -1,0 +1,49 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Liste Planning{% endblock %}
+
+{% block body %}
+    <h1>Liste Planning</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>All_Day</th>
+                <th>Background_color</th>
+                <th>Text_color</th>
+                <th>Border_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for planning in plannings %}
+            <tr>
+                <td>{{ planning.id }}</td>
+                <td>{{ planning.cours.title }}</td>
+                <td>{{ planning.cours.description }}</td>
+                <td>{{ planning.start ? planning.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ planning.end ? planning.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ planning.allDay ? 'Yes' : 'No' }}</td>
+                <td>{{ planning.backgroundColor }}</td>
+                <td>{{ planning.textColor }}</td>
+                <td>{{ planning.borderColor }}</td>
+                <td>
+                    <a href="{{ path('app_planning_show', {'id': planning.id}) }}">show</a>
+                    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_planning_new') }}">Create new</a>
+{% endblock %}

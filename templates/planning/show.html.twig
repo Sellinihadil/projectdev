@@ -1,0 +1,63 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Planning{% endblock %}
+
+{% block body %}
+    <h1>Planning</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ planning.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ planning.cours.title }}</td>
+            </tr>
+            <tr><th>Description</th>
+                <td>{{ planning.cours.description }}</td>
+
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>
+                    {% for category in planning.cours.categories %}
+                        {{ category.name }}
+                        
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Start</th>
+                <td>{{ planning.start ? planning.start|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>End</th>
+                <td>{{ planning.end ? planning.end|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>All_Day</th>
+                <td>{{ planning.allDay ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Background_color</th>
+                <td>{{ planning.backgroundColor }}</td>
+            </tr>
+            <tr>
+                <th>Text_color</th>
+                <td>{{ planning.textColor }}</td>
+            </tr>
+            <tr>
+                <th>Border_color</th>
+                <td>{{ planning.borderColor }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_planning_index') }}">back to list</a>
+
+    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}">edit</a>
+
+    {{ include('planning/_delete_form.html.twig') }}
+{% endblock %}

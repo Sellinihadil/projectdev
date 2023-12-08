@@ -1,0 +1,39 @@
+{% extends 'base-back.html.twig' %}
+{% block title %}Cours{% endblock %}
+
+{% block body %}
+    <h1>Cours </h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cour.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ cour.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ cour.description }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ cour.duration }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td> {% for category in cour.categories %}
+                    {{ category.name }}<br>
+                {% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn"> <a href="{{ path('app_cours_index') }}">back to list</a> </button>
+
+    <button class="btn"> <a href="{{ path('app_cours_edit', {'id': cour.id}) }}"> edit</a> </button>
+
+    {{ include('cours/_delete_form.html.twig') }}
+{% endblock %}

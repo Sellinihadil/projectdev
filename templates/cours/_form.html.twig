@@ -1,0 +1,30 @@
+{{ form_start (form,{'attr': {'novalidate': 'novalidate'}} )}}
+<table class="table">
+        <tr>
+            <td>{{ form_label (form.title, "Nom de cour") }}</td>
+            <td>{{ form_widget (form.title) }}</td>
+            <td>{{ form_errors (form.title) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label (form.description, "Description") }}</td>
+            <td>{{ form_widget (form.description) }}</td>
+            <td>{{ form_errors (form.description) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label (form.duration, "Durée") }}</td>
+            <td>{{ form_widget (form.duration) }}</td>
+            <td>{{ form_errors (form.duration) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label (form.categories, "Categorie") }}</td>
+            <td>{{ form_widget (form.categories) }}</td>
+            <td>{{ form_errors (form.categories) }}</td>
+        </tr>
+    
+</table>
+<div>  
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    <a href="{{ path('app_cours_index') }}">Back to list</a>
+
+</div>
+{{ form_end (form) }}
